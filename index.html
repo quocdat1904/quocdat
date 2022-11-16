@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/js.js"></script>
+    <link rel="stylesheet" href="./css/css.css">
+</head>
+<body>
+    <h1>EMPLOYEES</h1>
+    <div class="main">
+       
+        <div class="left">
+            <label for="Name"> Name</label><br>
+            <label for="Basic"> Basic salary</label><br>
+            <label for="Reward"> Reward</label><br>
+            <label for="Fine"> Fine</label><br>
+        </div>
+        
+        <div class="right">
+            <input type="text" id="ten" class="ten" placeholder="vui long nhap"><br>
+            <span class="ten_error" id="ten_error"></span>
+            <input type="text" id="basic" class="basic"><br>
+            <span class="basic_error" id="basic_error"></span>
+            <input type="text" id="reward" class="reward">
+            <input type="text" id="fine" class="fine"><br>
+            <input type="button" id="add" class="add" value="add" onclick="show()">
+        </div>
+        
+
+    </div>
+    <table class="newArry" id="newArry"></table>
+</body>
+</html>
