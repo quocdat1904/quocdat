@@ -1,3 +1,4 @@
+// mảng rỗng chứa thông tin
 var student = [];
 
 var $ = function (id) {
@@ -21,29 +22,30 @@ var valid = function () {
     }
     return check
 }
-
+class Student {
+    constructor(id, name, birthday, phone) {
+        this.id = id;
+        this.name = name;
+        this.birthday = birthday;
+        this.phone = phone
+    }
+}
 // hàm thêm sinh viên
 var add_student = function () {
-
     var id = $("id").value;
     var name = $("name").value;
     var birthday = $("birthday").value;
     var phone = $("phone").value;
-
-    // tạo đối tượng sinh viên
-    student_obj = {
-        id: id,
-        name: name,
-        birthday: birthday,
-        phone: phone
-    }
+    const student_obj = new Student(id, name, birthday, phone)
 
     student_data = localStorage.getItem("dt_student") || [];
+
     var vl = valid();
     if (vl) {
         if (student_data.length != 0) {
             student_json = JSON.parse(student_data);
             var check = true;
+            // kiểm tra id mới có trong id cũ hay không?
             for (var i in student_json) {
                 if (id == student_json[i].id) {
                     student_json[i].name = name;
@@ -64,7 +66,7 @@ var add_student = function () {
             student.push(student_obj);
             localStorage.setItem("dt_student", JSON.stringify(student)) || [];
         }
-        reset
+        reset();
     }
 
     show_student();
@@ -73,8 +75,13 @@ var add_student = function () {
 
 var show_student = function () {
     student_data = localStorage.getItem("dt_student") || [];
+
     if (student_data.length != 0) {
         var student_js = JSON.parse(student_data);
+        student_js.sort((a, b) => {
+            return a.id - b.id;
+        });
+        console.log(student_js)
         html = "<tr><th>Id</th><th>Name</th><th>Birthday</th><th>Phone</th></tr>";
         for (var i in student_js) {
             html = html +
@@ -95,8 +102,7 @@ var reset = function () {
     $("phone").value = "";
     $("id_error").innerHTML = ""
     $("name_error").innerHTML = ""
-    $("birthday_error").innerHTML = ""
-    $("phone_error").innerHTML = ""
+
 }
 
 window.onload = function () {
